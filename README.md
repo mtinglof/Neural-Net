@@ -21,9 +21,13 @@ The program will initially train itself on twenty-six Fortune Five Hundred compa
 ## Features
 
 * Dynamic build for the network. 
+
 ** Any data frame passed as an input will dynamically change the input size. 
+
 ** The number of nodes within the hidden layer may be changed within the initial parameters of the Train class (the default is set to 25). 
+
 ** Output size is also user set, though output should match passed trained output size.  
+
 * This network does not need to be trained with companies and stock data. The code is completely interchangeable with any passed data. 
 
 ## Configuration
