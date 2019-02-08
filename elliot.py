@@ -8,6 +8,8 @@ import pandas_datareader.data as web
 from scipy.optimize import fmin_l_bfgs_b
 
 # Data collection class. Creates spread sheets and percent changes of stock price 
+# Important to note: If perdict = False, the program will train given the passed company list. 
+# If perdict = True, the program will try and perdict the given company passed using the found saved weights 
 class GetInput:
     def __init__(self, company, perdict):
         self.end = dt.date(dt.date.today().year, dt.date.today().month-1, dt.date.today().day)
