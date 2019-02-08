@@ -2,8 +2,6 @@
 # Output layer is 12 nodes, each a different magnitude of price change. 
 
 import datetime as dt
-import matplotlib.pyplot as plt
-from matplotlib import style
 import numpy as np 
 import pandas as pd 
 import pandas_datareader.data as web 
