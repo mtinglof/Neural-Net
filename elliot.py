@@ -1,3 +1,6 @@
+# This is a simple NN that takes stock price data and tries to perdict next day stock price change. 
+# Output layer is 12 nodes, each a different magnitude of price change. 
+
 import datetime as dt
 import matplotlib.pyplot as plt
 from matplotlib import style
@@ -6,6 +9,7 @@ import pandas as pd
 import pandas_datareader.data as web 
 from scipy.optimize import fmin_l_bfgs_b
 
+# Data collection class. Creates spread sheets and percent changes of stock price 
 class GetInput:
     def __init__(self, company, perdict):
         self.end = dt.date(dt.date.today().year, dt.date.today().month-1, dt.date.today().day)
@@ -39,6 +43,7 @@ class GetInput:
             i += 1
         return(percent_grid)
 
+# Simple class that handles data calling and saving
 class Rob:
     def __init__(self, company_list, pred):
         self.company_list = company_list
@@ -52,6 +57,8 @@ class Rob:
             np.save("test", test.per_change())
         return  
 
+# Main section of code, trains the NN. Handles weight training and saving trained weights for use later in the code. 
+# Function "perdict" is called when weights are trained and a perdiction is to be made 
 class Train: 
     def __init__(self, dataframe):
         self.dataset = np.asmatrix(dataframe)
@@ -108,7 +115,7 @@ class Train:
             elif y[0, i] > 10: 
                 y_new = np.concatenate((y_new, np.matrix([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])), axis=0)
             else:
-                return ("You fucked up son")
+                return ("You messed up son")
             i = i + 1
         self.y = y_new[1:, :]
 
@@ -190,7 +197,8 @@ class Train:
         print(out)
 
 
-#companylist = ["AAPL", "BLK", "CF", "DOV", "ETR", "FLT", "GPS", "HOG", "IRM", "JPM", "KIM", "LMT", "M", "NKE", "OXY", "PCAR", "QRVO", "RE", "SEE", "TROW", "UNM", "V", "WELL", "XLNX", "YUM", "ZTS"]
+companylist = ["AAPL", "BLK", "CF", "DOV", "ETR", "FLT", "GPS", "HOG", "IRM", "JPM", "KIM", "LMT", "M", "NKE", "OXY", "PCAR", "QRVO", 
+"RE", "SEE", "TROW", "UNM", "V", "WELL", "XLNX", "YUM", "ZTS"]
 companylist = ["TSLA"]
 test = Rob(companylist, False)
 test.build_set()
